@@ -12,6 +12,8 @@ const validateLoginInput = require('../../validation/login');
 // Load User Model
 const User = require('../../models/User');
 
+
+// Register route
 router.post("/register", (req, res) => {
 
     // Form validation
@@ -45,3 +47,52 @@ router.post("/register", (req, res) => {
         };
     });
 });
+
+// Login Route
+router.post("/login", (req, res) => {
+
+    // Form validation
+    const { errors, isValid } = validateLoginInput(req.body);
+
+    // Check validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    const email = req.body.email;
+    const password = req.body.password;
+
+    // Find User by email
+    User.findOne({email}).then(user => {
+        if(!user) {
+            res.status(400).json({ emailnotfound: "Email not found"})
+        }
+
+        // Check password
+        bcrypt.compare(password, user.password).then(isMatch => {
+            if(isMatch) {
+                const payload = {
+                    id : user.id,
+                    name : user.name
+                };
+
+                // Sign Token
+                jwt.sign(
+                    payload,
+                    keys.secretOrKey,
+                    { expiresIn : 3155626},
+                    (err, token) => {
+                        res.json({
+                            success : true,
+                            token : "Bearer " + token
+                        });
+                    }
+                );
+            } else {
+                return res.status(400).json({ passwordincorrect : "password incorrect"})
+            }
+        });
+    });
+});
+
+module.exports = router;
