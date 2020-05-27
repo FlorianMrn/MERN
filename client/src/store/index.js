@@ -1,10 +1,14 @@
 // Import
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
-import authMiddleware from './middleware';
+import thunk from "redux-thunk";
 
 
 // Store
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const initialeState = {};
+
+const middleware = [thunk];
 
 const reducer = combineReducers({
     // TODO
@@ -12,7 +16,7 @@ const reducer = combineReducers({
 
 const enhancers = composeEnhancers(
     applyMiddleware(
-        authMiddleware
+        ...middleware
     ),
 );
 
