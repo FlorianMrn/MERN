@@ -26,6 +26,6 @@
     "server": "nodemon server.js",
     "client-install": "yarn add --prefix client",
     "client": "yarn start --prefix client",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+    "dev": "concurrently \"yarn server\" \"yarn client\""
   }
 }
