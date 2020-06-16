@@ -21,12 +21,11 @@ How to run app locally
 --------------------
 
 - Frontend
-  * `cd front/`
+  * `cd client/`
   * `yarn`
   * `yarn start`
 
 - Backend
-  * `cd back/`
   * `yarn`
   * `yarn nodemon` (to use nodemon)
   
@@ -38,7 +37,7 @@ French
 Inspired by
 --------------------
 
-- https://dribbble.com/shots/2451888-ToDo-List
-- https://www.devsurvival.com/todo-app-react-backend/
-- https://www.devsurvival.com/todo-app-react-frontend/
+- https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-1-c405048e3669
+- https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-2-frontend-6eac4e38ee82
+- https://blog.bitsrc.io/build-a-login-auth-app-with-the-mern-stack-part-3-react-components-88190f8db718
 
